@@ -38,6 +38,17 @@ jobs:
             docker push tuplestream/bumpversion:$VERSION
             docker tag tuplestream/bumpversion:$VERSION tuplestream/bumpversion:latest
             docker push tuplestream/bumpversion:latest
+      - run:
+          name: build swift build env
+          command: |
+            export VERSION=$(cat VERSION)
+            cd swift-env
+            docker build . -t tuplestream/swift-env:$VERSION
+            echo $DKPW | docker login --username m0wfo --password-stdin
+            docker push tuplestream/swift-env:$VERSION
+            docker tag tuplestream/swift-env:$VERSION tuplestream/swift-env:latest
+            docker push tuplestream/swift-env:latest
+
 workflows:
   version: 2
   build_and_test:
