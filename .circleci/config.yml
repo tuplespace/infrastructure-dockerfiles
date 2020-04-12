@@ -1,7 +1,20 @@
 version: 2.1
 
 jobs:
-  build_base:
+  bump_version:
+    docker:
+      - image: tuplestream/bumpversion:latest
+    steps:
+      - add_ssh_keys:
+        fingerprints:
+          - "35:56:55:9d:b0:4e:f1:bb:72:04:9d:73:cd:6c:dd:69"
+      - checkout
+      - run:
+          name: run bumpversion and push
+          command: |
+            bump2version minor
+            git push origin master
+  build_images:
     docker:
       - image: docker:18.06.3-ce-git
     steps:
@@ -36,6 +49,4 @@ workflows:
             branches:
               only:
                 - master
-      - build_base:
-          requires:
-            - bump_version
+      - build_images
