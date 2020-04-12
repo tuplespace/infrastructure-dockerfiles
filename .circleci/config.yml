@@ -10,9 +10,10 @@ jobs:
       - run:
           name: build-base image
           command: |
+            export VERSION=$(cat VERSION)
             cd base-build
-            docker build . -t tuplestream/base-build
-
+            docker build . -t tuplestream/base-build:$VERSION
+            echo $DKPW | docker login --username m0wfo --password-stdin
 
 workflows:
   version: 2
