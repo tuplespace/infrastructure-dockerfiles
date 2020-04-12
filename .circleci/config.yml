@@ -6,8 +6,8 @@ jobs:
       - image: tuplestream/bumpversion:latest
     steps:
       - add_ssh_keys:
-        fingerprints:
-          - "35:56:55:9d:b0:4e:f1:bb:72:04:9d:73:cd:6c:dd:69"
+          fingerprints:
+            - "35:56:55:9d:b0:4e:f1:bb:72:04:9d:73:cd:6c:dd:69"
       - checkout
       - run:
           name: run bumpversion and push
