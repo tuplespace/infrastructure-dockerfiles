@@ -17,7 +17,15 @@ jobs:
             docker push tuplestream/base-build:$VERSION
             docker tag tuplestream/base-build:$VERSION tuplestream/base-build:latest
             docker push tuplestream/base-build:latest
-
+      - run:
+        name: build bumpversion
+        command: |
+          export VERSION=$(cat VERSION)
+          cd bumpversion
+          docker build . -t tuplestream/bumpversion:$VERSION
+          echo $DKPW | docker login --username m0wfo --password-stdin
+          docker push tuplestream/bumpversion:$VERSION
+          docker push tuplestream/bumpversion:latest
 workflows:
   version: 2
   build_and_test:
