@@ -25,6 +25,7 @@ jobs:
             docker build . -t tuplestream/bumpversion:$VERSION
             echo $DKPW | docker login --username m0wfo --password-stdin
             docker push tuplestream/bumpversion:$VERSION
+            docker tag tuplestream/bumpversion:$VERSION tuplestream/bumpversion:latest
             docker push tuplestream/bumpversion:latest
 workflows:
   version: 2
