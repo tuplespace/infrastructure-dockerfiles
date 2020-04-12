@@ -16,6 +16,7 @@ jobs:
             git config --global user.email "tuplestream.bot@tuplestream.com"
             bump2version minor
             git push origin master
+            git push origin --tags
   build_images:
     docker:
       - image: docker:18.06.3-ce-git
