@@ -1,20 +1,22 @@
 version: 2.1
 
 jobs:
-  build:
+  build_base:
     docker:
       - image: docker:18.06.3-ce-git
     steps:
       - checkout
       - setup_remote_docker
       - run:
-          name: build-base image
+          name: build base image
           command: |
             export VERSION=$(cat VERSION)
             cd base-build
             docker build . -t tuplestream/base-build:$VERSION
             echo $DKPW | docker login --username m0wfo --password-stdin
             docker push tuplestream/base-build:$VERSION
+            docker tag tuplestream/base-build:$VERSION tuplestream/base-build:latest
+            docker push tuplestream/base-build:latest
 
 workflows:
   version: 2
