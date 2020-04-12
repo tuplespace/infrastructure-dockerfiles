@@ -1,6 +1,21 @@
 version: 2.1
 
 jobs:
+  bump_version:
+    docker:
+      - image: tuplestream/bumpversion:latest
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "35:56:55:9d:b0:4e:f1:bb:72:04:9d:73:cd:6c:dd:69"
+      - checkout
+      - run:
+          name: run bumpversion and push
+          command: |
+            git config --global user.name "Tuplestream Bot"
+            git config --global user.email "tuplestream.bot@tuplestream.com"
+            bump2version minor
+            git push origin master
   build_images:
     docker:
       - image: docker:18.06.3-ce-git
@@ -31,4 +46,11 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build_images
+      - bump_version:
+          filters:
+            branches:
+              only:
+                - master
+      - build_images:
+          requires:
+            - bump_version
