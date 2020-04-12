@@ -10,8 +10,8 @@ jobs:
       - run:
           name: build-base image
           command: |
-            cd build-base
-            docker build . -t tuplestream/build-base
+            cd base-build
+            docker build . -t tuplestream/base-build
 
 
 workflows:
