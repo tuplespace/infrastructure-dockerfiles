@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+git config --global user.name "Tuplestream Bot"
+git config --global user.email "tuplestream.bot@tuplestream.com"
+bump2version minor
+git push origin master
+git push origin --tags

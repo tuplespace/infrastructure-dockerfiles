@@ -11,12 +11,7 @@ jobs:
       - checkout
       - run:
           name: run bumpversion and push
-          command: |
-            git config --global user.name "Tuplestream Bot"
-            git config --global user.email "tuplestream.bot@tuplestream.com"
-            bump2version minor
-            git push origin master
-            git push origin --tags
+          command: bump
   build_images:
     docker:
       - image: docker:18.06.3-ce-git
