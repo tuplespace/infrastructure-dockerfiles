@@ -49,15 +49,15 @@ jobs:
             docker tag tuplestream/swift-env:$VERSION tuplestream/swift-env:latest
             docker push tuplestream/swift-env:latest
       - run:
-        name: build golang build env
-        command: |
-          export VERSION=$(cat VERSION)
-          cd golang
-          docker build . -t tuplestream/golang:$VERSION
-          echo $DKPW | docker login --username m0wfo --password-stdin
-          docker push tuplestream/golang:$VERSION
-          docker tag tuplestream/golang:$VERSION tuplestream/golang:latest
-          docker push tuplestream/golang:latest
+          name: build golang build env
+          command: |
+            export VERSION=$(cat VERSION)
+            cd golang
+            docker build . -t tuplestream/golang:$VERSION
+            echo $DKPW | docker login --username m0wfo --password-stdin
+            docker push tuplestream/golang:$VERSION
+            docker tag tuplestream/golang:$VERSION tuplestream/golang:latest
+            docker push tuplestream/golang:latest
 
 workflows:
   version: 2
