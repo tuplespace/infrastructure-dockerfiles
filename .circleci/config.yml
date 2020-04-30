@@ -20,14 +20,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: build base image
-          command: |
-            export VERSION=$(cat VERSION)
-            cd base-build
-            docker build . -t tuplestream/base-build:$VERSION
-            echo $DKPW | docker login --username m0wfo --password-stdin
-            docker push tuplestream/base-build:$VERSION
-            docker tag tuplestream/base-build:$VERSION tuplestream/base-build:latest
-            docker push tuplestream/base-build:latest
+          command: ./build.sh base-build
       - run:
           name: build bumpversion
           command: |
