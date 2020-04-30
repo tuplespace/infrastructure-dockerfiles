@@ -58,6 +58,9 @@ jobs:
             docker push tuplestream/golang:$VERSION
             docker tag tuplestream/golang:$VERSION tuplestream/golang:latest
             docker push tuplestream/golang:latest
+      - run:
+          name: build aws-cli
+          command: ./build.sh aws-cli
 
 workflows:
   version: 2
