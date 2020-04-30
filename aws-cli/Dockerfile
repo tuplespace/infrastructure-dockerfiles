@@ -1,3 +1,3 @@
 FROM amazon/aws-cli
 
-RUN yum install -y tar gzip
+RUN yum install -y tar zip gzip
