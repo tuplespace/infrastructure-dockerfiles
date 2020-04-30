@@ -6,8 +6,6 @@ BUILDNAME="$1"
 IMAGENAME="tuplestream/$BUILDNAME:$VERSION"
 IMAGE_LATEST="tuplestream/$BUILDNAME:latest"
 
-echo $IMAGENAME
-
 docker build . -t $IMAGENAME
 echo $DKPW | docker login --username $DOCKER_USER --password-stdin
 docker push $IMAGENAME

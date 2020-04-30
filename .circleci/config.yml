@@ -23,34 +23,13 @@ jobs:
           command: ./build.sh base-build
       - run:
           name: build bumpversion
-          command: |
-            export VERSION=$(cat VERSION)
-            cd bumpversion
-            docker build . -t tuplestream/bumpversion:$VERSION
-            echo $DKPW | docker login --username m0wfo --password-stdin
-            docker push tuplestream/bumpversion:$VERSION
-            docker tag tuplestream/bumpversion:$VERSION tuplestream/bumpversion:latest
-            docker push tuplestream/bumpversion:latest
+          command: ./build.sh bumpversion
       - run:
           name: build swift build env
-          command: |
-            export VERSION=$(cat VERSION)
-            cd swift-env
-            docker build . -t tuplestream/swift-env:$VERSION
-            echo $DKPW | docker login --username m0wfo --password-stdin
-            docker push tuplestream/swift-env:$VERSION
-            docker tag tuplestream/swift-env:$VERSION tuplestream/swift-env:latest
-            docker push tuplestream/swift-env:latest
+          command: ./build.sh swift-env
       - run:
           name: build golang build env
-          command: |
-            export VERSION=$(cat VERSION)
-            cd golang
-            docker build . -t tuplestream/golang:$VERSION
-            echo $DKPW | docker login --username m0wfo --password-stdin
-            docker push tuplestream/golang:$VERSION
-            docker tag tuplestream/golang:$VERSION tuplestream/golang:latest
-            docker push tuplestream/golang:latest
+          command: ./build.sh golang
       - run:
           name: build aws-cli
           command: ./build.sh aws-cli
