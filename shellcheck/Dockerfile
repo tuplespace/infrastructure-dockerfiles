@@ -1,3 +1,3 @@
 FROM koalaman/shellcheck-alpine:latest
 
-RUN apk add openssh-client
+RUN apk add git openssh-client
