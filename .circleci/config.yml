@@ -36,6 +36,9 @@ jobs:
       - run:
           name: build aws-cli
           command: ./build.sh aws-cli
+      - run:
+          name: build-shellcheck
+          command: ./build.sh shellcheck
 
 workflows:
   version: 2
