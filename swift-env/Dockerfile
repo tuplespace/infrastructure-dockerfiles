@@ -1,4 +1,4 @@
-FROM swift:5.3
+FROM swift:5.4
 
 WORKDIR /build
 RUN git clone https://github.com/lz4/lz4.git
